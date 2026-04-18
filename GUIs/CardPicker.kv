@@ -1,0 +1,242 @@
+#:kivy 2.0
+#:import Window kivy.core.window.Window
+
+<CardPicker@Popup>:
+    title: "Kies kaarten"
+    size_hint: None, None
+    size: dp(750), dp(350)
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
+
+        GridLayout:
+            cols: 13
+            rows: 4
+            spacing: dp(5)
+            size_hint_y: None
+            height: dp(220)
+
+            # --- RIJ 1: RUITEN ---
+            Button:
+                text: "A"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("A")
+            Button:
+                text: "K"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("K")
+            Button:
+                text: "Q"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("Q")
+            Button:
+                text: "J"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("J")
+            Button:
+                text: "T"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("T")
+            Button:
+                text: "9"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("9")
+            Button:
+                text: "8"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("8")
+            Button:
+                text: "7"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("7")
+            Button:
+                text: "6"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("6")
+            Button:
+                text: "5"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("5")
+            Button:
+                text: "4"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("4")
+            Button:
+                text: "3"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("3")
+            Button:
+                text: "2"
+                background_color: 0.2, 0.4, 1, 1
+                on_release: root.select_card("2")
+
+            # --- RIJ 2: SCHOPPEN ---
+            Button:
+                text: "A"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("A")
+            Button:
+                text: "K"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("K")
+            Button:
+                text: "Q"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("Q")
+            Button:
+                text: "J"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("J")
+            Button:
+                text: "T"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("T")
+            Button:
+                text: "9"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("9")
+            Button:
+                text: "8"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("8")
+            Button:
+                text: "7"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("7")
+            Button:
+                text: "6"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("6")
+            Button:
+                text: "5"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("5")
+            Button:
+                text: "4"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("4")
+            Button:
+                text: "3"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("3")
+            Button:
+                text: "2"
+                background_color: 0.1, 0.1, 0.1, 1
+                on_release: root.select_card("2")
+
+            # --- RIJ 3: HARTEN ---
+            Button:
+                text: "A"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("A")
+            Button:
+                text: "K"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("K")
+            Button:
+                text: "Q"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("Q")
+            Button:
+                text: "J"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("J")
+            Button:
+                text: "T"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("T")
+            Button:
+                text: "9"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("9")
+            Button:
+                text: "8"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("8")
+            Button:
+                text: "7"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("7")
+            Button:
+                text: "6"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("6")
+            Button:
+                text: "5"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("5")
+            Button:
+                text: "4"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("4")
+            Button:
+                text: "3"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("3")
+            Button:
+                text: "2"
+                background_color: 1, 0.2, 0.2, 1
+                on_release: root.select_card("2")
+
+            # --- RIJ 4: KLAVEREN ---
+            Button:
+                text: "A"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("A")
+            Button:
+                text: "K"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("K")
+            Button:
+                text: "Q"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("Q")
+            Button:
+                text: "J"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("J")
+            Button:
+                text: "T"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("T")
+            Button:
+                text: "9"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("9")
+            Button:
+                text: "8"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("8")
+            Button:
+                text: "7"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("7")
+            Button:
+                text: "6"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("6")
+            Button:
+                text: "5"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("5")
+            Button:
+                text: "4"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("4")
+            Button:
+                text: "3"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("3")
+            Button:
+                text: "2"
+                background_color: 0.2, 1, 0.2, 1
+                on_release: root.select_card("2")
+
+        Button:
+            text: "Sluiten"
+            size_hint_y: None
+            height: dp(40)
+            on_release: root.dismiss()

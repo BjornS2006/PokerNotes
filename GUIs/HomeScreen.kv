@@ -1,10 +1,8 @@
-#:kivy 2.0
+#:kivy 2.0.0
 #:import Window kivy.core.window.Window
-
 AnchorLayout:
-    anchor_x: 'center'
-    anchor_y: 'center'
-
+    anchor_x:'center'
+    anchor_y:'center'
 
     canvas.before:
         Color:
@@ -12,97 +10,19 @@ AnchorLayout:
         Rectangle:
             pos: self.pos
             size: self.size
-
     BoxLayout:
-        orientation: 'vertical'
-        padding: 20
+        orientation:'vertical'
         spacing: 15
         size_hint: None, None
-        width: dp(300)
+        width: dp(400)
 
-        BoxLayout:
-            orientation: 'horizontal'
+        Label:
+            id:title
+            text: 'Welkom bij PokerNotes!'
             size_hint_y: None
             height: dp(40)
+            font_size: 40
 
-            HoverButton:
-                id: BackButton
-                text: "< Terug"
-                size_hint_x: None
-                width: dp(80)
-                background_normal: ''
-                background_color: 0, 0, 0, 0
-                color: 1, 1, 1, 1
-                on_press:
-                    self.scale=0.97
-                on_release:
-                    self.scale=1
-                
-                scale: 1
-
-                canvas.before:
-                    PushMatrix
-                    Scale:
-                        origin: self.center
-                        x: self.scale
-                        y: self.scale
-                    Color:
-                        rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0, 0, 0, 1)
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [10]
-                    PopMatrix
-                on_hovered:
-                    Window.set_system_cursor("hand" if self.hovered else "arrow")
-
-            Widget:   # duwt de titel naar het midden
-
-            Label:
-                id: title
-                text: 'Nieuwe Stake'
-                font_size: 30
-                size_hint_x: None
-                width: dp(140)
-
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: dp(40)
-            Label:
-                text: 'Small Blind:'
-                font_size: 22
-            TextInput:
-                multiline: False
-                size_hint_x: 1
-                input_filter: 'float'
-                height: dp(30)
-                size_hint_y: None
-                background_normal: ''
-                background_active: ''
-                background_color: (1, 1, 1, 1) if self.focus else (.30, .30, .30, 1)
-                foreground_color: 1, 1, 1, 1
-
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint_y: None
-            height: dp(40)
-            Label:
-                text: 'Big Blind:'
-                font_size: 22
-            TextInput:
-                multiline: False
-                size_hint_x: 1
-                input_filter: 'float'
-                height: dp(30)
-                size_hint_y: None
-                background_normal: ''
-                background_active: ''
-                background_color: (1, 1, 1, 1) if self.focus else (.30, .30, .30, 1)
-                foreground_color: 1, 1, 1, 1
-                    
         BoxLayout:
             size_hint_y: None
             height: dp(60)
@@ -110,14 +30,14 @@ AnchorLayout:
             spacing: 0
             orientation: 'horizontal'
 
-            Widget:   # lege ruimte links
-
+            Widget:
+        
             HoverButton:
-                id: AddStake
-                text: 'Toevoegen'
+                text:'Handen noteren'
+                id: noterenButton
                 size_hint: None, None
-                width: dp(150)
-                height: dp(50)
+                width: dp(200)
+                height: dp(60)
                 background_normal: ''
                 background_color: 0, 0, 0, 0
                 color: 1, 1, 1, 1
@@ -126,7 +46,7 @@ AnchorLayout:
                     self.scale=0.97
                 on_release:
                     self.scale=1
-                
+                    
                 scale: 1
 
                 canvas.before:
@@ -145,5 +65,92 @@ AnchorLayout:
                 on_hovered:
                     Window.set_system_cursor("hand" if self.hovered else "arrow")
 
-            Widget:   # lege ruimte rechts
+            Widget: 
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: 0
+            spacing: 0
+            orientation: 'horizontal'
+
+            Widget:
+
+            HoverButton:
+                text:'Verleden handen'
+                id: PastHandsButton
+                size_hint: None, None
+                width: dp(200)
+                height: dp(60)
+                background_normal: ''
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+
+                on_press:
+                    self.scale=0.97
+                on_release:
+                    self.scale=1
+                    
+                scale: 1
+
+                canvas.before:
+                    PushMatrix
+                    Scale:
+                        origin: self.center
+                        x: self.scale
+                        y: self.scale
+                    Color:
+                        rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0, 0, 0, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+                    PopMatrix
+                on_hovered:
+                    Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+            Widget: 
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: 0
+            spacing: 0
+            orientation: 'horizontal'
+
+            Widget:
+
+            HoverButton:
+                text:'Stake toevoegen'
+                id: AddStakeButton
+                size_hint: None, None
+                width: dp(200)
+                height: dp(60)
+                background_normal: ''
+                background_color: 0, 0, 0, 0
+                color: 1, 1, 1, 1
+
+                on_press:
+                    self.scale=0.97
+                on_release:
+                    self.scale=1
+                    
+                scale: 1
+
+                canvas.before:
+                    PushMatrix
+                    Scale:
+                        origin: self.center
+                        x: self.scale
+                        y: self.scale
+                    Color:
+                        rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0, 0, 0, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+                    PopMatrix
+                on_hovered:
+                    Window.set_system_cursor("hand" if self.hovered else "arrow")
+            
+            Widget: 
 

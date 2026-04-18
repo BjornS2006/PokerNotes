@@ -1,0 +1,694 @@
+#:kivy 2.0.0
+#:import Window kivy.core.window.Window
+
+AnchorLayout:
+    anchor_x: 'left'
+    anchor_y: 'center'
+
+    canvas.before:
+        Color:
+            rgba: .2, .2, .2, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ScrollView:
+        size_hint: None, None
+        width: dp(400)
+        height: min(root.height, dp(750))
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(16)
+            spacing: dp(12)
+
+            # ── Top bar ──────────────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(44)
+                spacing: dp(8)
+
+                HoverButton:
+                    text: '< Terug'
+                    size_hint: None, None
+                    width: dp(90)
+                    height: dp(34)
+                    pos_hint: {'center_y': 0.5}
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 14
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                Label:
+                    text: 'Hand noteren'
+                    color: 1, 1, 1, 1
+                    font_size: 22
+                    bold: True
+                    halign: 'center'
+                    valign: 'middle'
+
+            # ── H Positie ────────────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(36)
+                spacing: dp(10)
+
+                Label:
+                    text: 'H Positie:'
+                    color: 1, 1, 1, 1
+                    font_size: 16
+                    bold: True
+                    size_hint_x: None
+                    width: dp(100)
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+
+                TextInput:
+                    id: hPositieInput
+                    size_hint_x: None
+                    width: dp(100)
+                    height: dp(32)
+                    multiline: False
+                    background_color: .75, .75, .75, 1
+                    foreground_color: 0, 0, 0, 1
+                    font_size: 14
+                    padding: [6, 6]
+
+            # ── Position buttons row 1 (EP LJ HJ CO BU SB BB) ────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(38)
+                spacing: dp(6)
+
+                HoverButton:
+                    text: 'EP'
+                    id: btn_EP
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'LJ'
+                    id: btn_LJ
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'HJ'
+                    id: btn_HJ
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'CO'
+                    id: btn_CO
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'BU'
+                    id: btn_BU
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'SB'
+                    id: btn_SB
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'BB'
+                    id: btn_BB
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                Widget:
+
+            # ── Position buttons row 2 (F C R X B) ───────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(38)
+                spacing: dp(6)
+
+                HoverButton:
+                    text: 'F'
+                    id: btn_F
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'C'
+                    id: btn_C
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'R'
+                    id: btn_R
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'X'
+                    id: btn_X
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                HoverButton:
+                    text: 'B'
+                    id: btn_B
+                    size_hint: None, None
+                    width: dp(40)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 13
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                Widget:
+
+            # ── Pre-flop action text input ────────────────────────────
+            TextInput:
+                id: preflopInput
+                size_hint_y: None
+                height: dp(36)
+                multiline: False
+                background_color: .75, .75, .75, 1
+                foreground_color: 0, 0, 0, 1
+                font_size: 14
+                padding: [8, 8]
+
+            # ── Flop ─────────────────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(36)
+                spacing: dp(8)
+
+                HoverButton:
+                    text: 'Flop:'
+                    id: flopButton
+                    size_hint: None, None
+                    width: dp(80)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 14
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                TextInput:
+                    id: flopCardsInput
+                    multiline: False
+                    background_color: .75, .75, .75, 1
+                    foreground_color: 0, 0, 0, 1
+                    font_size: 14
+                    padding: [8, 8]
+
+            # ── Flop action text input ────────────────────────────────
+            TextInput:
+                id: flopActionInput
+                size_hint_y: None
+                height: dp(36)
+                multiline: False
+                background_color: .75, .75, .75, 1
+                foreground_color: 0, 0, 0, 1
+                font_size: 14
+                padding: [8, 8]
+
+            # ── Turn ──────────────────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(36)
+                spacing: dp(8)
+
+                HoverButton:
+                    text: 'Turn:'
+                    id: turnButton
+                    size_hint: None, None
+                    width: dp(80)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 14
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                TextInput:
+                    id: turnCardInput
+                    multiline: False
+                    background_color: .75, .75, .75, 1
+                    foreground_color: 0, 0, 0, 1
+                    font_size: 14
+                    padding: [8, 8]
+
+            # ── Turn action text input ────────────────────────────────
+            TextInput:
+                id: turnActionInput
+                size_hint_y: None
+                height: dp(36)
+                multiline: False
+                background_color: .75, .75, .75, 1
+                foreground_color: 0, 0, 0, 1
+                font_size: 14
+                padding: [8, 8]
+
+            # ── River ─────────────────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(36)
+                spacing: dp(8)
+
+                HoverButton:
+                    text: 'River:'
+                    id: riverButton
+                    size_hint: None, None
+                    width: dp(80)
+                    height: dp(34)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 14
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [6]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                TextInput:
+                    id: riverCardInput
+                    multiline: False
+                    background_color: .75, .75, .75, 1
+                    foreground_color: 0, 0, 0, 1
+                    font_size: 14
+                    padding: [8, 8]
+
+            # ── River action text input ───────────────────────────────
+            TextInput:
+                id: riverActionInput
+                size_hint_y: None
+                height: dp(36)
+                multiline: False
+                background_color: .75, .75, .75, 1
+                foreground_color: 0, 0, 0, 1
+                font_size: 14
+                padding: [8, 8]
+
+            # ── Overige notities label ────────────────────────────────
+            Label:
+                text: 'Overige notities:'
+                color: 1, 1, 1, 1
+                font_size: 16
+                bold: True
+                size_hint_y: None
+                height: dp(30)
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+            # ── Overige notities textarea ─────────────────────────────
+            TextInput:
+                id: notitiesInput
+                size_hint_y: None
+                height: dp(130)
+                multiline: True
+                background_color: .75, .75, .75, 1
+                foreground_color: 0, 0, 0, 1
+                font_size: 14
+                padding: [8, 8]
+
+            # ── Bevestigen button ─────────────────────────────────────
+            BoxLayout:
+                size_hint_y: None
+                height: dp(60)
+                padding: [0, dp(8)]
+
+                Widget:
+
+                HoverButton:
+                    text: 'Bevestigen'
+                    id: bevestigenButton
+                    size_hint: None, None
+                    width: dp(160)
+                    height: dp(44)
+                    background_normal: ''
+                    background_color: 0, 0, 0, 0
+                    color: 1, 1, 1, 1
+                    font_size: 16
+                    bold: True
+                    scale: 1
+                    canvas.before:
+                        PushMatrix
+                        Scale:
+                            origin: self.center
+                            x: self.scale
+                            y: self.scale
+                        Color:
+                            rgba: (0.15, 0.15, 0.15, 1) if self.hovered else (0, 0, 0, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [8]
+                        PopMatrix
+                    on_press: self.scale = 0.97
+                    on_release: self.scale = 1
+                    on_hovered: Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+                Widget:

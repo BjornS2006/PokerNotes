@@ -1,0 +1,35 @@
+#:kivy 2.0
+
+AnchorLayout:
+    anchor_x:'center'
+    anchor_y:'center'
+
+    canvas.before:
+        Color:
+            rgba: .2, .2, .2, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation:'vertical'
+        size_hint: None, None
+        width: dp(300)
+        height: dp(30)
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: 1, 1
+            Label:
+                text: 'Bet/Raise amount:'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                multiline: False
+                size_hint_x: 1
+                input_filter: 'float'
+                size_hint_y: None
+                height: dp(30)
+                background_normal: ''
+                background_active: ''
+                background_color: (1, 1, 1, 1) if self.focus else (.30, .30, .30, 1)
+                foreground_color: 1, 1, 1, 1

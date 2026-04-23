@@ -1,0 +1,32 @@
+from kivy.uix.screenmanager import Screen
+from kivy.properties import ObjectProperty
+
+class HandNotingScreen(Screen):
+    #widgets uit de GUI definieren
+    hPositieInput = ObjectProperty(None)
+    holeCardsButton = ObjectProperty(None)
+    holeCardsInput = ObjectProperty(None)
+    btn_EP = ObjectProperty(None)
+    btn_LJ = ObjectProperty(None)
+    btn_HJ = ObjectProperty(None)
+    btn_CO = ObjectProperty(None)
+    btn_BU = ObjectProperty(None)
+    btn_SB = ObjectProperty(None)
+    btn_BB = ObjectProperty(None)
+    btn_F = ObjectProperty(None)
+    btn_C = ObjectProperty(None)
+    btn_R = ObjectProperty(None)
+    btn_X = ObjectProperty(None)
+    btn_B = ObjectProperty(None)
+    preflopInput = ObjectProperty(None)
+    flopButton = ObjectProperty(None)
+    flopCardsInput = ObjectProperty(None)
+    flopActionInput = ObjectProperty(None)
+    turnButton = ObjectProperty(None)
+    turnCardInput = ObjectProperty(None)
+    turnActionInput = ObjectProperty(None)
+    riverButton = ObjectProperty(None)
+    riverCardInput = ObjectProperty(None)
+    riverActionInput = ObjectProperty(None)
+    notitiesInput = ObjectProperty(None)
+    bevestigenButton = ObjectProperty(None)

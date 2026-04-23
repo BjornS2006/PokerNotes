@@ -1,35 +1,68 @@
 #:kivy 2.0
+<BRAmount@Popup>:
+    title = 'vul bet of raise hoeveelheid in'
+    size_hint: None, None
+    size: dp(300), dp(50)
+    auto_dismiss: False
 
-AnchorLayout:
-    anchor_x:'center'
-    anchor_y:'center'
+    AnchorLayout:
+        anchor_x:'center'
+        anchor_y:'center'
 
-    canvas.before:
-        Color:
-            rgba: .2, .2, .2, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
+        canvas.before:
+            Color:
+                rgba: .2, .2, .2, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
-    BoxLayout:
-        orientation:'vertical'
-        size_hint: None, None
-        width: dp(300)
-        height: dp(30)
         BoxLayout:
-            orientation:'horizontal'
-            size_hint: 1, 1
-            Label:
-                text: 'Bet/Raise amount:'
-                valign: 'middle'
-                text_size: self.size
-            TextInput:
-                multiline: False
-                size_hint_x: 1
-                input_filter: 'float'
-                size_hint_y: None
-                height: dp(30)
-                background_normal: ''
-                background_active: ''
-                background_color: (1, 1, 1, 1) if self.focus else (.30, .30, .30, 1)
-                foreground_color: 1, 1, 1, 1
+            orientation:'vertical'
+            size_hint: None, None
+            width: dp(300)
+            height: dp(30)
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint: 1, 1
+                Label:
+                    text: 'Bet/Raise amount:'
+                    valign: 'middle'
+                    text_size: self.size
+                TextInput:
+                    id: amountInput
+                    multiline: False
+                    size_hint_x: 1
+                    input_filter: 'float'
+                    size_hint_y: None
+                    height: dp(30)
+                    background_normal: ''
+                    background_active: ''
+                    background_color: (1, 1, 1, 1) if self.focus else (.30, .30, .30, 1)
+                    foreground_color: 1, 1, 1, 1
+        HoverButton:
+            id: closeButton
+            text: "Sluiten"
+            size_hint_y: None
+            height: dp(40)
+            on_release: 
+                root.dismiss()
+                self.scale=1
+            on_press:
+                self.scale=0.97
+            scale: 1
+
+            canvas.before:
+                PushMatrix
+                Scale:
+                    origin: self.center
+                    x: self.scale
+                    y: self.scale
+                Color:
+                    rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0, 0, 0, 1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+                PopMatrix
+            on_hovered:
+                Window.set_system_cursor("hand" if self.hovered else "arrow")

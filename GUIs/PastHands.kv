@@ -1,83 +1,23 @@
 #:kivy 2.0
 #:import Window kivy.core.window.Window
-
-BoxLayout:
-    orientation: 'vertical'
-
-    canvas.before:
-        Color:
-            rgba: .2, .2, .2, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    # ---------------- TOPBAR ----------------
+<PastHandsScreen>:
     BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: None
-        height: dp(70)
-        spacing: dp(15)
-        padding: dp(15), 0
+        orientation: 'vertical'
 
         canvas.before:
             Color:
-                rgba: 0, 0, 0, 1
+                rgba: .2, .2, .2, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
 
-        HoverButton:
-            text: "< Terug"
-            size_hint: None, None
-            width: dp(100)
-            height: dp(50)
-            pos_hint: {"center_y": 0.5}
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            color: 1, 1, 1, 1
-
-            on_press: self.scale = 0.97
-            on_release: self.scale = 1
-            scale: 1
-
-            canvas.before:
-                PushMatrix
-                Scale:
-                    origin: self.center
-                    x: self.scale
-                    y: self.scale
-                Color:
-                    rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0.50, 0.50, 0.50, 1)
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10]
-                PopMatrix
-
-            on_hovered:
-                Window.set_system_cursor("hand" if self.hovered else "arrow")
-
-        Label:
-            text: "Verleden handen"
-            font_size: 28
-            color: 1, 1, 1, 1
-            pos_hint: {"center_y": 0.5}
-
-        Widget:
-            size_hint_x: 1
-
-    # ---------------- MAIN CONTENT ----------------
-    BoxLayout:
-        orientation: 'horizontal'
-        
-
-        # ---------------- BLACK SIDEBAR ----------------
+        # ---------------- TOPBAR ----------------
         BoxLayout:
-            orientation: 'vertical'
-            size_hint_x: None
-            width: dp(220)
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
             spacing: dp(15)
-            padding: dp(15)
+            padding: dp(15), 0
 
             canvas.before:
                 Color:
@@ -86,157 +26,226 @@ BoxLayout:
                     pos: self.pos
                     size: self.size
 
-            Label:
-                text: "Filters:"
-                font_size: 22
+            HoverButton:
+                text: "< Terug"
+                size_hint: None, None
+                width: dp(100)
+                height: dp(50)
+                pos_hint: {"center_y": 0.5}
+                background_normal: ''
+                background_color: 0, 0, 0, 0
                 color: 1, 1, 1, 1
-                size_hint_y: None
-                height: dp(35)
 
-            # --- Datum ---
+                on_press: self.scale = 0.97
+                on_release: 
+                    self.scale = 1
+                    #terug naar home, animatie gaat naar rechts
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'home'
+                scale: 1
+
+                canvas.before:
+                    PushMatrix
+                    Scale:
+                        origin: self.center
+                        x: self.scale
+                        y: self.scale
+                    Color:
+                        rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0.50, 0.50, 0.50, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+                    PopMatrix
+
+                on_hovered:
+                    Window.set_system_cursor("hand" if self.hovered else "arrow")
+
+            Label:
+                text: "Verleden handen"
+                font_size: 28
+                color: 1, 1, 1, 1
+                pos_hint: {"center_y": 0.5}
+
+            Widget:
+                size_hint_x: 1
+
+        # ---------------- MAIN CONTENT ----------------
+        BoxLayout:
+            orientation: 'horizontal'
+            
+
+            # ---------------- BLACK SIDEBAR ----------------
             BoxLayout:
                 orientation: 'vertical'
-                spacing: dp(5)
+                size_hint_x: None
+                width: dp(220)
+                spacing: dp(15)
+                padding: dp(15)
+
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
                 Label:
-                    text: "Datum:"
-                    font_size: 16
+                    text: "Filters:"
+                    font_size: 22
                     color: 1, 1, 1, 1
                     size_hint_y: None
-                    height: dp(20)
+                    height: dp(35)
 
-                TextInput:
-                    multiline: False
-                    background_normal: ''
-                    background_active: ''
-                    background_color: (1, 1, 1, 1)
-                    foreground_color: 0, 0, 0, 1
-
-            # --- Preflop ---
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(5)
-
-                Label:
-                    text: "Preflop Action:"
-                    font_size: 16
-                    color: 1, 1, 1, 1
-                    size_hint_y: None
-                    height: dp(20)
-
-                TextInput:
-                    multiline: False
-                    background_normal: ''
-                    background_active: ''
-                    background_color: (1, 1, 1, 1)
-                    foreground_color: 0, 0, 0, 1
-
-            # --- Flop ---
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(5)
-
-                Label:
-                    text: "Flop Action:"
-                    font_size: 16
-                    color: 1, 1, 1, 1
-                    size_hint_y: None
-                    height: dp(20)
-
-                TextInput:
-                    multiline: False
-                    background_normal: ''
-                    background_active: ''
-                    background_color: (1, 1, 1, 1)
-                    foreground_color: 0, 0, 0, 1
-
-            # --- Turn ---
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(5)
-
-                Label:
-                    text: "Turn Action:"
-                    font_size: 16
-                    color: 1, 1, 1, 1
-                    size_hint_y: None
-                    height: dp(20)
-
-                TextInput:
-                    multiline: False
-                    background_normal: ''
-                    background_active: ''
-                    background_color: (1, 1, 1, 1)
-                    foreground_color: 0, 0, 0, 1
-
-            # --- River ---
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(5)
-
-                Label:
-                    text: "River Action:"
-                    font_size: 16
-                    color: 1, 1, 1, 1
-                    size_hint_y: None
-                    height: dp(20)
-
-                TextInput:
-                    multiline: False
-                    background_normal: ''
-                    background_active: ''
-                    background_color: (1, 1, 1, 1)
-                    foreground_color: 0, 0, 0, 1
-
-        # ---------------- RESULTS ----------------
-        ScrollView:
-            do_scroll_x: False
-
-            GridLayout:
-                id: results_container
-                cols: 1
-                size_hint_y: None
-                height: self.minimum_height
-                spacing: dp(10)
-                padding: dp(10)
-
-                # --- Voorbeeld hand ---
+                # --- Datum ---
                 BoxLayout:
                     orientation: 'vertical'
-                    padding: dp(15)
                     spacing: dp(5)
+
+                    Label:
+                        text: "Datum:"
+                        font_size: 16
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: dp(20)
+
+                    TextInput:
+                        id: datumInput
+                        multiline: False
+                        background_normal: ''
+                        background_active: ''
+                        background_color: (1, 1, 1, 1)
+                        foreground_color: 0, 0, 0, 1
+
+                # --- Preflop ---
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+
+                    Label:
+                        text: "Preflop Action:"
+                        font_size: 16
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: dp(20)
+
+                    TextInput:
+                        id: preflopInput
+                        multiline: False
+                        background_normal: ''
+                        background_active: ''
+                        background_color: (1, 1, 1, 1)
+                        foreground_color: 0, 0, 0, 1
+
+                # --- Flop ---
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+
+                    Label:
+                        text: "Flop Action:"
+                        font_size: 16
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: dp(20)
+
+                    TextInput:
+                        id: flopInput
+                        multiline: False
+                        background_normal: ''
+                        background_active: ''
+                        background_color: (1, 1, 1, 1)
+                        foreground_color: 0, 0, 0, 1
+
+                # --- Turn ---
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+
+                    Label:
+                        text: "Turn Action:"
+                        font_size: 16
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: dp(20)
+
+                    TextInput:
+                        id: turnInput
+                        multiline: False
+                        background_normal: ''
+                        background_active: ''
+                        background_color: (1, 1, 1, 1)
+                        foreground_color: 0, 0, 0, 1
+
+                # --- River ---
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+
+                    Label:
+                        text: "River Action:"
+                        font_size: 16
+                        color: 1, 1, 1, 1
+                        size_hint_y: None
+                        height: dp(20)
+
+                    TextInput:
+                        id: riverInput
+                        multiline: False
+                        background_normal: ''
+                        background_active: ''
+                        background_color: (1, 1, 1, 1)
+                        foreground_color: 0, 0, 0, 1
+
+            # ---------------- RESULTS ----------------
+            ScrollView:
+                do_scroll_x: False
+
+                GridLayout:
+                    id: results_container
+                    cols: 1
                     size_hint_y: None
-                    height: dp(120)
+                    height: self.minimum_height
+                    spacing: dp(10)
+                    padding: dp(10)
 
-                    canvas.before:
-                        Color:
-                            rgba: 0.15, 0.15, 0.15, 1
-                        RoundedRectangle:
-                            pos: self.pos
-                            size: self.size
-                            radius: [10]
+                    # --- Voorbeeld hand ---
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: dp(15)
+                        spacing: dp(5)
+                        size_hint_y: None
+                        height: dp(120)
 
-                    Label:
-                        text: "<datum> <positie>"
-                        font_size: 18
-                        color: 1, 1, 1, 1
+                        canvas.before:
+                            Color:
+                                rgba: 0.15, 0.15, 0.15, 1
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
 
-                    Label:
-                        text: "<preflop action>"
-                        font_size: 16
-                        color: 1, 1, 1, 1
+                        Label:
+                            text: "<datum> <positie>"
+                            font_size: 18
+                            color: 1, 1, 1, 1
 
-                    Label:
-                        text: "<flop action>"
-                        font_size: 16
-                        color: 1, 1, 1, 1
+                        Label:
+                            text: "<preflop action>"
+                            font_size: 16
+                            color: 1, 1, 1, 1
 
-                    Label:
-                        text: "<turn action>"
-                        font_size: 16
-                        color: 1, 1, 1, 1
+                        Label:
+                            text: "<flop action>"
+                            font_size: 16
+                            color: 1, 1, 1, 1
 
-                    Label:
-                        text: "<river action>"
-                        font_size: 16
-                        color: 1, 1, 1, 1
+                        Label:
+                            text: "<turn action>"
+                            font_size: 16
+                            color: 1, 1, 1, 1
+
+                        Label:
+                            text: "<river action>"
+                            font_size: 16
+                            color: 1, 1, 1, 1

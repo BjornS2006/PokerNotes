@@ -1,222 +1,232 @@
 #:kivy 2.0
 #:import Window kivy.core.window.Window
-
-BoxLayout:
-    orientation: 'vertical'
-
-    canvas.before:
-        Color:
-            rgba: .2, .2, .2, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    # ---------------- TOPBAR ----------------
+<HandDetailsScreen>:
     BoxLayout:
-        orientation: 'horizontal'
-        size_hint_y: None
-        height: dp(70)
-        
+        orientation: 'vertical'
 
         canvas.before:
             Color:
-                rgba: 0, 0, 0, 1
+                rgba: .2, .2, .2, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
-        Widget:
-            size_hint_x: None
-            width: dp(15) 
 
-        HoverButton:
-            text: "< Terug"
-            size_hint: None, None
-            width: dp(80)
-            height: dp(50)
-            pos_hint: {"center_y": 0.5}
-            background_normal: ''
-            background_color: 0, 0, 0, 0
-            color: 1, 1, 1, 1
-
-            on_press: self.scale = 0.97
-            on_release: self.scale = 1
-            scale: 1
+        # ---------------- TOPBAR ----------------
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
+            
 
             canvas.before:
-                PushMatrix
-                Scale:
-                    origin: self.center
-                    x: self.scale
-                    y: self.scale
                 Color:
-                    rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0.50, 0.50, 0.50, 1)
-                RoundedRectangle:
+                    rgba: 0, 0, 0, 1
+                Rectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [10]
-                PopMatrix
-
-            on_hovered:
-                Window.set_system_cursor("hand" if self.hovered else "arrow")
-
-        Label:
-            text: "Hand details"
-            font_size: 28
-            color: 1, 1, 1, 1
-            pos_hint: {"center_y": 0.5}
-
-        Widget:  # ruimte rechts
-            size_hint_x: 1
-
-    # ---------------- CONTENT ----------------
-    BoxLayout:
-        orientation: 'vertical'
-        padding: dp(20)
-        spacing: dp(20)
-
-        # --- Positie ---
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: dp(40)
-            spacing: dp(10)
-
-            Label:
-                text: "H Positie:"
-                font_size: 20
+            Widget:
                 size_hint_x: None
-                width: dp(160)
+                width: dp(15) 
+
+            HoverButton:
+                text: "< Terug"
+                size_hint: None, None
+                width: dp(80)
+                height: dp(50)
+                pos_hint: {"center_y": 0.5}
+                background_normal: ''
+                background_color: 0, 0, 0, 0
                 color: 1, 1, 1, 1
 
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
+                on_press: self.scale = 0.97
+                on_release: 
+                    self.scale = 1
+                    #terug naar handen overzicht, animatie gaat naar rechts
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'past_hands'
+                scale: 1
+
                 canvas.before:
+                    PushMatrix
+                    Scale:
+                        origin: self.center
+                        x: self.scale
+                        y: self.scale
                     Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
+                        rgba: (0.1, 0.1, 0.1, 1) if self.hovered else (0.50, 0.50, 0.50, 1)
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
-                        radius: [5]
-        # --- Preflop ---
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: dp(40)
-            spacing: dp(10)
+                        radius: [10]
+                    PopMatrix
+
+                on_hovered:
+                    Window.set_system_cursor("hand" if self.hovered else "arrow")
 
             Label:
-                text: "Preflop action:"
-                font_size: 20
-                size_hint_x: None
-                width: dp(160)
+                text: "Hand details"
+                font_size: 28
                 color: 1, 1, 1, 1
+                pos_hint: {"center_y": 0.5}
 
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [5]
+            Widget:  # ruimte rechts
+                size_hint_x: 1
 
-        # --- Flop ---
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: dp(40)
-            spacing: dp(10)
-
-            Label:
-                text: "Flop action:"
-                font_size: 20
-                size_hint_x: None
-                width: dp(160)
-                color: 1, 1, 1, 1
-
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [5]
-
-        # --- Turn ---
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: dp(40)
-            spacing: dp(10)
-
-            Label:
-                text: "Turn action:"
-                font_size: 20
-                size_hint_x: None
-                width: dp(160)
-                color: 1, 1, 1, 1
-
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [5]
-
-        # --- River ---
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: None
-            height: dp(40)
-            spacing: dp(10)
-
-            Label:
-                text: "River action:"
-                font_size: 20
-                size_hint_x: None
-                width: dp(160)
-                color: 1, 1, 1, 1
-
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [5]
-
-        # --- Notities ---
+        # ---------------- CONTENT ----------------
         BoxLayout:
             orientation: 'vertical'
-            spacing: dp(10)
+            padding: dp(20)
+            spacing: dp(20)
 
-            Label:
-                text: "Notities:"
-                font_size: 20
-                color: 1, 1, 1, 1
+            # --- Positie ---
+            BoxLayout:
+                orientation: 'horizontal'
                 size_hint_y: None
-                height: dp(30)
+                height: dp(40)
+                spacing: dp(10)
 
-            Label:
-                text: "..."
-                color: 0, 0, 0, 1   # zwarte tekst
-                canvas.before:
-                    Color:
-                        rgba: 1, 1, 1, 1   # witte achtergrond
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [5]
+                Label:
+                    text: "H Positie:"
+                    font_size: 20
+                    size_hint_x: None
+                    width: dp(160)
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: hPosLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+            # --- Preflop ---
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(10)
+
+                Label:
+                    text: "Preflop action:"
+                    font_size: 20
+                    size_hint_x: None
+                    width: dp(160)
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: preflopActionLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+
+            # --- Flop ---
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(10)
+
+                Label:
+                    text: "Flop action:"
+                    font_size: 20
+                    size_hint_x: None
+                    width: dp(160)
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: flopActionLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+
+            # --- Turn ---
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(10)
+
+                Label:
+                    text: "Turn action:"
+                    font_size: 20
+                    size_hint_x: None
+                    width: dp(160)
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: turnActionLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+
+            # --- River ---
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(40)
+                spacing: dp(10)
+
+                Label:
+                    text: "River action:"
+                    font_size: 20
+                    size_hint_x: None
+                    width: dp(160)
+                    color: 1, 1, 1, 1
+
+                Label:
+                    id: riverActionLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
+
+            # --- Notities ---
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(10)
+
+                Label:
+                    text: "Notities:"
+                    font_size: 20
+                    color: 1, 1, 1, 1
+                    size_hint_y: None
+                    height: dp(30)
+
+                Label:
+                    id: notesLabel
+                    text: "..."
+                    color: 0, 0, 0, 1   # zwarte tekst
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1   # witte achtergrond
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [5]
